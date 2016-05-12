@@ -13,9 +13,7 @@
     }
   ],
   "dependencies": {
-    "node-telegram-bot": "0.1.9"
-  },
-  "devDependencies": {
+    "node-telegram-bot": "0.1.9",
     "coffee-script": "1.10.0"
   }
 }
