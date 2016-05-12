@@ -8,7 +8,7 @@ Bot = require('node-telegram-bot')
 
 bot = new Bot(
                 token: '229246242:AAECL1CXSzgWE46yMLpHmPx4PE5coM1YUbA',
-                webhook: true).on('message', (message) ->
+                webhook: false).on('message', (message) ->
   switch message.text
     when '/sendMessage'
       bot.sendMessage
