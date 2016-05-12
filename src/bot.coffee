@@ -1,50 +1,25 @@
-'use strict'
-fs = require('fs')
-Bot = require('node-telegram-bot')
+fs = require 'fs'
 
-###*
-# this sample helps understand how the bot works, can also be used for integration tests ;)
-###
+TelegramBot = require 'node-telegram-bot-api'
+token = '229246242:AAECL1CXSzgWE46yMLpHmPx4PE5coM1YUbA'
 
-bot = new Bot(
-                token: '229246242:AAECL1CXSzgWE46yMLpHmPx4PE5coM1YUbA',
-                webhook: false).on('message', (message) ->
-  switch message.text
-    when '/sendMessage'
-      bot.sendMessage
-        chat_id: message.chat.id
-        text: 'echo : ' + message.text
-    when '/sendPhoto'
-      bot.sendPhoto
-        chat_id: message.chat.id
-        caption: 'trololo'
-        files: photo: '../resources/imgs/leopard.jpg'
-    when '/sendDocument'
-      bot.sendDocument {
-        chat_id: message.chat.id
-        files:
-          filename: 'scream'
-          contentType: 'audio/ogg'
-          stream: fs.createReadStream('./0477.ogg')
-      }, console.error
-    when '/sendLocation'
-      bot.sendLocation
-        chat_id: message.chat.id
-        latitude: -27.121192
-        longitude: -109.366424
-        reply_to_message_id: message.message_id
+bot = null
+if process.env.NODE_ENV == 'production'
+  bot = new Bot token
+  bot.setWebHook "https://https://mtestbot.herokuapp.com/#{token}"
+else
+  bot = new TelegramBot token, polling: true
+
+# Matches /echo [whatever]
+bot.onText /\/echo (.+)/, (msg, match) ->
+  fromId = msg.from.id
+  resp = match[1]
+  bot.sendMessage fromId, resp
   return
-).on('message', (message) ->
-  console.log message
+# Any kind of message
+bot.on 'message', (msg) ->
+  chatId = msg.chat.id
+  # photo can be: a file path, a stream or a Telegram file_id
+  photo = 'resources/imgs/Koala.png'
+  bot.sendPhoto chatId, photo, caption: 'Hello from Down Under'
   return
-).on('test', (message) ->
-  bot.sendMessage
-    chat_id: message.chat.id
-    text: 'You\'ve send command: ' + command
-  return
-).on('arg', (args, message) ->
-  bot.sendMessage
-    chat_id: message.chat.id
-    text: 'You\'ve send command with arguments: ' + args
-  return
-).start()
