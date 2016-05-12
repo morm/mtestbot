@@ -6,7 +6,9 @@ Bot = require('node-telegram-bot')
 # this sample helps understand how the bot works, can also be used for integration tests ;)
 ###
 
-bot = new Bot(token: '229246242:AAECL1CXSzgWE46yMLpHmPx4PE5coM1YUbA').on('message', (message) ->
+bot = new Bot(
+                token: '229246242:AAECL1CXSzgWE46yMLpHmPx4PE5coM1YUbA',
+                webhook: true).on('message', (message) ->
   switch message.text
     when '/sendMessage'
       bot.sendMessage
@@ -16,7 +18,7 @@ bot = new Bot(token: '229246242:AAECL1CXSzgWE46yMLpHmPx4PE5coM1YUbA').on('messag
       bot.sendPhoto
         chat_id: message.chat.id
         caption: 'trololo'
-        files: photo: './logo.png'
+        files: photo: '../resources/imgs/leopard.jpg'
     when '/sendDocument'
       bot.sendDocument {
         chat_id: message.chat.id
