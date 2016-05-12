@@ -1,1 +1,1 @@
-web: node_modules/.bin/coffee src/bot.coffee
+web: ls && node_modules/.bin/coffee src/bot.coffee
