@@ -5,7 +5,7 @@ token = '229246242:AAECL1CXSzgWE46yMLpHmPx4PE5coM1YUbA'
 
 bot = null
 if process.env.NODE_ENV == 'production'
-  bot = new Bot token
+  bot = new TelegramBot token
   bot.setWebHook "https://https://mtestbot.herokuapp.com/#{token}"
 else
   bot = new TelegramBot token, polling: true
