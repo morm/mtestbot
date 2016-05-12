@@ -1,6 +1,10 @@
 {
   "name": "mtestbot",
   "description": "test telegram bot",
+  "engines": {
+    "node": "4.4.4",
+    "npm": "2.15.1"
+  },
   "maintainers": [
     {
       "name": "mor",
