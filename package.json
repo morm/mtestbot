@@ -1,0 +1,17 @@
+{
+  "name": "mtestbot",
+  "description": "test telegram bot",
+  "maintainers": [
+    {
+      "name": "mor",
+      "email": "tmozhar@gmail.com",
+      "web": "http://morm.github.io/mor_t/"
+    }
+  ],
+  "dependencies": {
+    "node-telegram-bot": "0.1.9"
+  },
+  "devDependencies": {
+    "coffee-script": "1.10.0"
+  }
+}
